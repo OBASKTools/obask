@@ -14,13 +14,13 @@ OBASK pipeline comprises three servers/services and four data pipelines:
   - Data collection (`pipeline-collectdata`)
   - Triple store ingestion (`pipeline-updatetriplestore`)
   - Data transformation and dumps for production instances (`pipeline-dumps`)
-  - VFB production instance ingestion (`pipeline-updateprod`)
+  - KG production instance ingestion (`pipeline-updateprod`)
 
 Server and data pipelines are combined into 3 general sub-pipelines which are configured as Docker compose services. This documentation describes all 3 sub-pipelines in detail, including which role the individual servers and data pipelines play.
 
 ![Pipeline Overview](pipeline-overview.png)
 
-## Sub-pipeline: Deploy triplestore (pip_vfb-triplestore)
+## Sub-pipeline: Deploy triplestore
 
 - _Summary_: This pipeline deploys an empty triplestore, collects all relevant data (including KB and ontologies), and pre-processes and loads the collected data into the triplestore. Components:
   - Triplestore
@@ -82,7 +82,7 @@ Server and data pipelines are combined into 3 general sub-pipelines which are co
 #### Detailed notes on pipeline-dumps
 
 - The [process](https://github.com/OBASKTools/pipeline-dumps/blob/master/process.sh) performs the following steps (all encoded in the [Makefile](https://github.com/OBASKTools/pipeline-dumps/blob/master/dumps.Makefile)):
-  1. Build dump for `pipeline-prod` (VFB production instance)
+  1. Build dump for `pipeline-prod` (KG production instance)
   1. Build dump for `solr` (special json file, created using python)
 
 ## Sub-pipeline: Knowledge Graph (pipeline-prod)
