@@ -15,7 +15,7 @@ services:
     image: matentzn/vfb-pipeline-collectdata:latest
     container_name: collectdata
     build:
-      context: ../vfb-pipeline-collectdata
+      context: ../pipeline-collectdata
       dockerfile: Dockerfile
       args:
         - CONF_REPO=${CONF_REPO}
@@ -28,7 +28,7 @@ services:
     image: matentzn/vfb-pipeline-updatetriplestore:latest
     container_name: updatetriplestore
     build:
-      context: ../vfb-pipeline-updatetriplestore
+      context: ../pipeline-updatetriplestore
       dockerfile: Dockerfile
       args:
         - CONF_REPO=${CONF_REPO}
@@ -46,7 +46,7 @@ services:
     image: matentzn/vfb-pipeline-dumps:latest
     container_name: dumps
     build:
-      context: ../cap-pipeline-dumps
+      context: ../pipeline-dumps
       dockerfile: Dockerfile
       args:
         - CONF_REPO=${CONF_REPO}
