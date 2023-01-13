@@ -1,0 +1,15 @@
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vfb: <http://virtualflybrain.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix FBbt:  <http://purl.obolibrary.org/obo/FBbt_> .
+
+vfb:DataSetCountShape
+			a sh:NodeShape ;
+			sh:targetNode FBbt:00050095 ;
+			sh:property [
+					sh:path [ sh:inversePath rdf:type ] ;
+					sh:minCount 1 ;
+			] .

@@ -1,0 +1,16 @@
+PREFIX pcl: <http://purl.obolibrary.org/obo/PCL_>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  ?class rdfs:subClassOf  ?otherClass .
+  ?otherClass ?p ?o .
+}
+WHERE {
+  ?class a owl:Class ;
+         rdfs:subClassOf [ a owl:Class ;
+                               owl:intersectionOf [ rdf:rest*/rdf:first ?otherClass ] ] .
+ ?otherClass ?p ?o .
+  FILTER(  strstarts(str(?class),str(pcl:)) )
+}

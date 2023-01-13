@@ -1,0 +1,11 @@
+PREFIX : <http://virtualflybrain.org#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT { ?x ?p ?y . }
+
+WHERE {
+	?x ?p ?y .
+	FILTER(!isLiteral(?y)) 	
+}
+
+# LIMIT 5000

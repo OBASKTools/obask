@@ -1,0 +1,14 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+CONSTRUCT {
+	?x <http://n2o.neo/property/nodeLabel> "has_image" .
+}
+WHERE {
+  ?y foaf:depicts ?x . 
+  ?y <http://purl.obolibrary.org/obo/RO_0002026> ?z .
+  ?x rdf:type owl:NamedIndividual .
+  ?y rdf:type owl:NamedIndividual .
+  ?z rdf:type owl:NamedIndividual .
+}

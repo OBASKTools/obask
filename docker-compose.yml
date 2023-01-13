@@ -1,0 +1,78 @@
+version: '3.3'
+
+services:
+  vfb-triplestore:
+    image: matentzn/vfb-pipeline-triplestore
+    # use this image if you are using a mac with m1 chip
+    # image: eclipse/rdf4j-workbench:arm64v8-3.5.0
+    container_name: triplestore
+    environment:
+      - JVM_PARAMS=-Xms1G -Xmx5G
+      - RDF4J_DATA=/data
+    ports:
+      - 8080:8080
+  vfb-collectdata:
+    image: matentzn/vfb-pipeline-collectdata:latest
+    container_name: collectdata
+    build:
+      context: ../vfb-pipeline-collectdata
+      dockerfile: Dockerfile
+      args:
+        - CONF_REPO=${CONF_REPO}
+        - CONF_BRANCH=${CONF_BRANCH}
+    environment:
+      - KBserver=http://vfb-kb:7474
+    volumes:
+      - vfb_data:/out
+  vfb-updatetriplestore:
+    image: matentzn/vfb-pipeline-updatetriplestore:latest
+    container_name: updatetriplestore
+    build:
+      context: ../vfb-pipeline-updatetriplestore
+      dockerfile: Dockerfile
+      args:
+        - CONF_REPO=${CONF_REPO}
+        - CONF_BRANCH=${CONF_BRANCH}
+    depends_on:
+      - vfb-collectdata
+      - vfb-triplestore
+    links:
+      - vfb-triplestore
+    environment:
+      - SERVER=http://triplestore:8080
+    volumes:
+      - vfb_data:/data
+  vfb-dumps:
+    image: matentzn/vfb-pipeline-dumps:latest
+    container_name: dumps
+    build:
+      context: ../cap-pipeline-dumps
+      dockerfile: Dockerfile
+      args:
+        - CONF_REPO=${CONF_REPO}
+        - CONF_BRANCH=${CONF_BRANCH}
+    depends_on:
+      - vfb-updatetriplestore
+      - vfb-triplestore
+    links:
+      - vfb-triplestore
+    volumes:
+      - vfb_data:/out
+  solr:
+    image: virtualflybrain/vfb-solr
+    container_name: solr
+    ports:
+     - 8993:8983
+    depends_on:
+      - vfb-dumps
+    links:
+      - vfb-dumps
+    volumes:
+      - solr_data:/var/solr
+    entrypoint:
+    - bash
+    - "-c"
+    - "precreate-core ontology; precreate-core bdsdump; exec solr -f"
+volumes:
+  vfb_data:
+  solr_data:

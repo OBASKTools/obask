@@ -1,0 +1,11 @@
+# Add species semantic tags species to assist with contextual filtering for developmental stage terms
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+   ?s <http://n2o.neo/property/nodeLabel> "Danio_rerio" .
+ }
+WHERE {
+  ?s rdfs:label ?o
+  FILTER(STRSTARTS(str(?s), "http://purl.obolibrary.org/obo/ZFS_"))
+}

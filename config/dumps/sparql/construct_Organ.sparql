@@ -1,0 +1,9 @@
+PREFIX inSubset: <http://www.geneontology.org/formats/oboInOwl#inSubset>
+
+CONSTRUCT {
+	?s <http://n2o.neo/property/nodeLabel> "Organ" .
+}
+WHERE 
+{
+      ?s inSubset: <http://purl.obolibrary.org/obo/uberon/core#organ_slim> .
+}

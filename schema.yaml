@@ -1,0 +1,16 @@
+allow_entities_without_labels: bool()
+index: bool()
+testmode: bool()
+batch: bool()
+safe_label: str()
+batch_size: int()
+relation_type_threshold: num()
+represent_values_and_annotations_as_json: map(str(), list())
+neo_node_labelling: list(include('subgroup'))
+curie_map: map()
+filters: map()
+---
+subgroup:
+  classes: list(regex('^([a-zA-Z]+:[0-9]+)(( and | or | some )([A-Z]+:{1}[0-9]+)|)*$'))
+  label: str()
+  description: str(required=False)

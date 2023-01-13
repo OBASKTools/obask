@@ -1,0 +1,20 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX n2o: <http://n2o.neo/property/>
+PREFIX n2oc: <http://n2o.neo/custom/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+CONSTRUCT { 
+?anatomical_indiv <http://n2o.neo/custom/filename> ?filename . 
+?anatomical_indiv <http://n2o.neo/custom/thumbnail> ?thumbnail . 
+} 
+WHERE {
+  ?channel <http://xmlns.com/foaf/0.1/depicts> ?anatomical_indiv .
+  ?anno owl:annotatedSource ?channel .
+  ?anno owl:annotatedProperty <http://purl.obolibrary.org/obo/RO_0002026> .
+  ?anno n2oc:folder ?folder .
+  OPTIONAL {
+  ?anno n2oc:filename ?filename .
+  }
+  BIND(CONCAT(STR( ?folder ),"thumbnail.png") AS ?thumbnail ) .
+}

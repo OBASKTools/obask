@@ -1,0 +1,23 @@
+PREFIX : <http://virtualflybrain.org#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT {
+	?x a owl:Class .
+	?x owl:equivalentClass ?y .
+	?x rdfs:label ?l .
+	?x rdfs:comment ?c .
+	?y rdfs:label ?l2 .
+}
+
+WHERE {
+	?x a owl:Class .
+	?x rdfs:subClassOf ?y .
+	?x rdfs:label ?l .
+	?x rdfs:comment ?c .
+	?y rdfs:label ?l2 .
+	FILTER(isIRI(?x)) 
+	FILTER(isIRI(?y)) 	
+}
+
+LIMIT 10000

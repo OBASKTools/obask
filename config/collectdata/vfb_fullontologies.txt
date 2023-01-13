@@ -1,0 +1,16 @@
+http://purl.obolibrary.org/obo/uberon/uberon-base.owl
+http://purl.obolibrary.org/obo/cl/cl-base.owl
+http://purl.obolibrary.org/obo/ncbitaxon/subsets/taxslim.owl
+http://purl.obolibrary.org/obo/hancestro/hancestro.owl
+http://purl.obolibrary.org/obo/mondo/mondo-base.owl
+http://purl.obolibrary.org/obo/pato.owl
+https://raw.githubusercontent.com/kharchenkolab/cap_organ_slim/main/src/results/cap_organ_slim.owl
+https://raw.githubusercontent.com/kharchenkolab/cap_ontology/main/capo-base.owl
+http://purl.obolibrary.org/obo/fbbt.owl
+http://purl.obolibrary.org/obo/fbdv.owl
+http://purl.obolibrary.org/obo/wbls.owl
+http://purl.obolibrary.org/obo/zfs.owl
+http://purl.obolibrary.org/obo/mmusdv.owl
+http://purl.obolibrary.org/obo/hsapdv.owl
+http://purl.obolibrary.org/obo/xao.owl
+http://purl.obolibrary.org/obo/pcl.owl

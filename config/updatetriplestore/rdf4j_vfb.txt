@@ -1,0 +1,15 @@
+show repositories
+drop cap.
+yes
+create memory.
+cap
+CAP integration layer triplestore
+10000
+true
+0
+org.eclipse.rdf4j.query.algebra.evaluation.impl.StrictEvaluationStrategyFactory
+show repositories
+open cap .
+select * where {?s ?p ?o } LIMIT 5.
+close.
+quit.

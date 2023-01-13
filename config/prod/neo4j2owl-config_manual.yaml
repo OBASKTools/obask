@@ -1,0 +1,123 @@
+allow_entities_without_labels: true
+index: false
+testmode: false
+batch: true
+safe_label: loose
+batch_size: 100000000
+relation_type_threshold: 0.95
+represent_values_and_annotations_as_json:
+  iris:
+    - http://purl.obolibrary.org/obo/IAO_0000115
+    - http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+    - http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym
+    - http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym
+    - http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym
+
+neo_node_labelling:
+  - classes:
+      - CL:0000548
+    label: Animal_cell
+    description: a cell that was sampled from an animal
+  - classes:
+      - UBERON:0010000
+      - UBERON:0000178
+    label: Multicellular_anatomical_structure
+    description: an anatomical structure that has more than one cell as a part, including blood 
+  - classes:
+      - NCBITaxon:33208
+    label: Metazoan  
+    description: an organism that belongs to the division Metazoa or a term that is applicable to Metazoa
+  - classes:
+      - NCBITaxon:40674
+    label: Mammalia
+    description: an organism that belongs to the class Mammalia or a term that is applicable to Mammalia
+  - classes:
+      - NCBITaxon:7215
+      - FBbt:10000000
+    label: Drosophila
+    description: an organism that belongs to the genus Drosophila or a term that is applicable to Drosophila
+  - classes:
+      - NCBITaxon:8353
+    label: Xenopus
+    description: an organism that belongs to the genus Xenopus or a term that is applicable to Xenopus
+  - classes:
+      - NCBITaxon:6239
+    label: Caenorhabditis_elegans
+    description: an organism that belongs to the species C. elegans or a term that is applicable to C. elegans
+  - classes:
+      - NCBITaxon:7227
+    label: Drosophila_melanogaster
+    description: an organism that belongs to the species D. melanogaster or a term that is applicable to D. melanogaster
+  - classes:
+      - NCBITaxon:7955
+    label: Danio_rerio
+    description: an organism that belongs to the species D. rerio or a term that is applicable to D. rerio
+  - classes:
+      - NCBITaxon:9606
+    label: Homo_sapiens
+    description: an organism that belongs to the species H. sapiens or a term that is applicable to H. sapiens
+  - classes:
+      - HANCESTRO:0004
+    label: Race
+    description: a term that refers to the ancestry of a Homo sapiens
+  - classes:
+      - MONDO:0000001
+    label: Disease
+    description: a disease or disorder, plus 'normal' (latter pulled from SPARQL query)
+  - classes:
+      - UBERON:0000105
+      - FBdv:00007012
+      - WBls:0000075
+      - ZFS:0100000
+      - MmusDv:0000000
+      - HsapDv:0000000
+      - XAO:1000000
+    label: Developmental_stage
+    description: a term that refers to a life cycle stage
+
+curie_map:
+  CL: http://purl.obolibrary.org/obo/CL_
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  FBbt: http://purl.obolibrary.org/obo/FBbt_
+  HANCESTRO: http://purl.obolibrary.org/obo/HANCESTRO_
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  FBdv: http://purl.obolibrary.org/obo/FBdv_
+  WBls: http://purl.obolibrary.org/obo/WBls_
+  ZFS: http://purl.obolibrary.org/obo/ZFS_
+  MmusDv: http://purl.obolibrary.org/obo/MmusDv_
+  HsapDv: http://purl.obolibrary.org/obo/HsapDv_
+  XAO: http://purl.obolibrary.org/obo/XAO_
+  GITHUB: https://github.com/
+  GITHUBH: http://github.com/
+  PMID: http://www.ncbi.nlm.nih.gov/pubmed/
+  orcid: https://orcid.org/
+  doi: https://doi.org/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  ncbigene: http://www.ncbi.nlm.nih.gov/gene/
+  cc: http://creativecommons.org/ns#
+  pato_rel: http://purl.obolibrary.org/obo/pato#
+  so_rel: http://purl.obolibrary.org/obo/so#
+  ro_rel: http://www.obofoundry.org/ro/ro.owl#
+  owl: http://www.w3.org/2002/07/owl#
+  skos: http://www.w3.org/2004/02/skos/core#
+  ensembl: http://identifiers.org/ensembl/
+  RO: http://purl.obolibrary.org/obo/RO_
+  n2o: http://n2o.neo/custom/
+  ILX: http://uri.interlex.org/base/ilx_
+  PR: http://purl.obolibrary.org/obo/PR_
+  SO: http://purl.obolibrary.org/obo/SO_
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  PCL: http://purl.obolibrary.org/obo/PCL_
+  EFO: http://www.ebi.ac.uk/efo/EFO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  
+
+filters:
+  solr:
+    exclusion:
+      iri_prefix:
+        - http://virtualflybrain.org/reports/VFBc_
+      neo4j_node_label:
+        - Channel
