@@ -109,5 +109,5 @@ Server and data pipelines are combined into 3 general sub-pipelines which are co
 
 #### Detailed notes about pipeline-updateprod
 
-- You can set additional Pipeline post-processing steps like indices by editing [this file](https://github.com/OBASKTools/pipeline-updateprod/blob/master/pdb_set_indices.neo4j). Note that this file can be used to set arbitrary post-processing cypher queries, not just indices (contrary to the file name). Essentially, all list cypher queries are executed in order right after PDB import is completed.
+- You can set additional Pipeline post-processing steps like indices by editing [this file](https://github.com/OBASKTools/obask/blob/main/config/update-prod/pdb_set_indices.neo4j). Note that this file can be used to set arbitrary post-processing cypher queries, not just indices (contrary to the file name). Essentially, all list cypher queries are executed in order right after PDB import is completed.
 - The possible configuration settings for the `neo4j2owl:owl2Import()` procedure are described [here](https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl). The configuration is stored [here](https://github.com/OBASKTools/obask/blob/main/config/prod/neo4j2owl-config.yaml).
