@@ -2,15 +2,20 @@ version: '3.3'
 
 services:
   vfb-triplestore:
-    image: matentzn/vfb-pipeline-triplestore
+    # image: matentzn/vfb-pipeline-triplestore
     # use this image if you are using a mac with m1 chip
-    # image: eclipse/rdf4j-workbench:arm64v8-3.5.0
+    image: eclipse/rdf4j-workbench:arm64v8-3.5.0
     container_name: triplestore
     environment:
       - JVM_PARAMS=-Xms1G -Xmx5G
       - RDF4J_DATA=/data
+      - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
     ports:
       - 8080:8080
+    volumes:
+      - type: bind
+        source: /run/host-services/ssh-auth.sock
+        target: /run/host-services/ssh-auth.sock
   vfb-collectdata:
     image: matentzn/vfb-pipeline-collectdata:latest
     container_name: collectdata
@@ -20,9 +25,12 @@ services:
       args:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
+    depends_on:
+      - vfb-triplestore
     environment:
       - KBserver=http://vfb-kb:7474
     volumes:
+      - ./config/collectdata:/opt/conf_base/config/collectdata
       - vfb_data:/out
   vfb-updatetriplestore:
     image: matentzn/vfb-pipeline-updatetriplestore:latest
@@ -34,8 +42,8 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      - vfb-collectdata
-      - vfb-triplestore
+      vfb-collectdata:
+        condition: service_completed_successfully
     links:
       - vfb-triplestore
     environment:
@@ -52,8 +60,8 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      - vfb-updatetriplestore
-      - vfb-triplestore
+      vfb-updatetriplestore:
+        condition: service_completed_successfully
     links:
       - vfb-triplestore
     volumes:
