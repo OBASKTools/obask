@@ -65,6 +65,7 @@ services:
     environment:
       - SERVER=http://triplestore:8080
     volumes:
+      - ./config/updatetriplestore:/opt/conf_base/config/updatetriplestore
       - obask_data:/data
   obask-dumps:
     image: ghcr.io/obasktools/pipeline-dumps:latest
