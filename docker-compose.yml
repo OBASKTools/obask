@@ -1,23 +1,38 @@
 version: '3.3'
 
 services:
-  vfb-triplestore:
+  obask-triplestore:
     # image: matentzn/vfb-pipeline-triplestore
     # use this image if you are using a mac with m1 chip
-    image: eclipse/rdf4j-workbench:arm64v8-3.5.0
+    # image: eclipse/rdf4j-workbench:arm64v8-3.5.0
+    image: eclipse/rdf4j-workbench:3.7.7
     container_name: triplestore
     environment:
-      - JVM_PARAMS=-Xms1G -Xmx5G
-      - RDF4J_DATA=/data
-      - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
+      - JAVA_OPTS=-Xms1G -Xmx5G
     ports:
       - 8080:8080
     volumes:
-      - type: bind
-        source: /run/host-services/ssh-auth.sock
-        target: /run/host-services/ssh-auth.sock
-  vfb-collectdata:
-    image: matentzn/vfb-pipeline-collectdata:latest
+      - obask_data:/var/rdf4j
+  obask-kb:
+    image: ghcr.io/obasktools/obask-kb:latest
+    container_name: obask-kb
+    environment:
+      - NEO4J_AUTH=neo4j/neo
+      - NEO4J_dbms_read__only=false
+      - NEO4J_dbms_memory_heap_maxSize=4G
+      - NEO4J_dbms_memory_heap_initial__size=1G
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - obask_data:/input
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "-", "http://obask-kb:7474" ]
+      interval: 18s
+      timeout: 12s
+      retries: 3
+  obask-collectdata:
+    image: ghcr.io/obasktools/pipeline-collectdata:latest
     container_name: collectdata
     build:
       context: ../pipeline-collectdata
@@ -26,14 +41,15 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      - vfb-triplestore
+      - obask-triplestore
+    # TODO delete this env
     environment:
       - KBserver=http://vfb-kb:7474
     volumes:
       - ./config/collectdata:/opt/conf_base/config/collectdata
-      - vfb_data:/out
-  vfb-updatetriplestore:
-    image: matentzn/vfb-pipeline-updatetriplestore:latest
+      - obask_data:/out
+  obask-updatetriplestore:
+    image: ghcr.io/obasktools/pipeline-updatetriplestore:latest
     container_name: updatetriplestore
     build:
       context: ../pipeline-updatetriplestore
@@ -42,16 +58,16 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      vfb-collectdata:
+      obask-collectdata:
         condition: service_completed_successfully
     links:
-      - vfb-triplestore
+      - obask-triplestore
     environment:
       - SERVER=http://triplestore:8080
     volumes:
-      - vfb_data:/data
-  vfb-dumps:
-    image: matentzn/vfb-pipeline-dumps:latest
+      - obask_data:/data
+  obask-dumps:
+    image: ghcr.io/obasktools/pipeline-dumps:latest
     container_name: dumps
     build:
       context: ../pipeline-dumps
@@ -60,21 +76,40 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      vfb-updatetriplestore:
+      obask-updatetriplestore:
         condition: service_completed_successfully
     links:
-      - vfb-triplestore
+      - obask-triplestore
     volumes:
-      - vfb_data:/out
+      - obask_data:/out
+  obask-updateprod:
+    image: ghcr.io/obasktools/pipeline-updateprod:latest
+    container_name: updateprod
+    build:
+      context: ../pipeline-updateprod
+      dockerfile: Dockerfile
+      args:
+        - CONF_REPO=${CONF_REPO}
+        - CONF_BRANCH=${CONF_BRANCH}
+    depends_on:
+      obask-dumps:
+        condition: service_completed_successfully
+    links:
+      - obask-kb
+    environment:
+      - password=neo4j/neo
+      - server=http://obask-kb:7474
+    volumes:
+      - obask_data:/input
   solr:
     image: virtualflybrain/vfb-solr
     container_name: solr
     ports:
      - 8993:8983
     depends_on:
-      - vfb-dumps
+      - obask-dumps
     links:
-      - vfb-dumps
+      - obask-dumps
     volumes:
       - solr_data:/var/solr
     entrypoint:
@@ -82,5 +117,5 @@ services:
     - "-c"
     - "precreate-core ontology; precreate-core bdsdump; exec solr -f"
 volumes:
-  vfb_data:
+  obask_data:
   solr_data:
