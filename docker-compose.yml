@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 
 services:
   obask-triplestore:
@@ -24,13 +24,17 @@ services:
     ports:
       - 7474:7474
       - 7687:7687
+    depends_on:
+      obask-dumps:
+        condition: service_completed_successfully
     volumes:
       - obask_data:/input
     healthcheck:
       test: [ "CMD", "wget", "-O", "-", "http://obask-kb:7474" ]
       interval: 18s
       timeout: 12s
-      retries: 3
+      retries: 20
+      start_period: 3s
   obask-collectdata:
     image: ghcr.io/obasktools/pipeline-collectdata:latest
     container_name: collectdata
@@ -42,9 +46,6 @@ services:
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
       - obask-triplestore
-    # TODO delete this env
-    environment:
-      - KBserver=http://vfb-kb:7474
     volumes:
       - ./config/collectdata:/opt/conf_base/config/collectdata
       - obask_data:/out
@@ -82,6 +83,7 @@ services:
     links:
       - obask-triplestore
     volumes:
+      - ./config/dumps:/opt/conf_base/config/dumps
       - obask_data:/out
   obask-updateprod:
     image: ghcr.io/obasktools/pipeline-updateprod:latest
@@ -93,14 +95,15 @@ services:
         - CONF_REPO=${CONF_REPO}
         - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
-      obask-dumps:
-        condition: service_completed_successfully
+      obask-kb:
+        condition: service_healthy
     links:
       - obask-kb
     environment:
       - password=neo4j/neo
       - server=http://obask-kb:7474
     volumes:
+      - ./config/update-prod:/opt/conf_base/config/update-prod
       - obask_data:/input
   solr:
     image: virtualflybrain/vfb-solr

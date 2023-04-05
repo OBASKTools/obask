@@ -1,0 +1,104 @@
+allow_entities_without_labels: true
+index: false
+testmode: false
+batch: true
+safe_label: loose
+batch_size: 100000000
+relation_type_threshold: 0.95
+represent_values_and_annotations_as_json:
+  iris:
+    - "http://purl.obolibrary.org/obo/IAO_0000115"
+    - "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"
+    - "http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym"
+    - "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"
+    - "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym"
+property_mapping:
+  - iris:
+      - "http://purl.obolibrary.org/obo/so#part_of"
+      - "http://purl.obolibrary.org/obo/BFO_0000050"
+    id: part_of
+  - iris:
+      - "http://purl.obolibrary.org/obo/fbbt#has_quality"
+      - "http://purl.obolibrary.org/obo/so#has_quality"
+      - "http://purl.obolibrary.org/obo/RO_0000086"
+    id: has_quality
+  - iris:
+      - "http://www.w3.org/2002/07/owl#deprecated"
+    id: deprecated
+    datatype: "Boolean"
+  - iris:
+      - "http://purl.obolibrary.org/obo/so#overlaps"
+      - "http://purl.obolibrary.org/obo/RO_0002131"
+    id: overlaps
+ 
+neo_node_labelling:
+  - classes:
+      - CL:0011005
+    label: GABAergic
+  - classes:
+      - CL:0000679
+    label: Glutamatergic
+  - classes:
+      - CL:0002453
+    label: OPC
+  - classes:
+      - CL:0000127
+    label: Astrocyte
+  - classes:
+      - CL:0000128
+    label: Oligodendrocyte
+  - classes:
+      - CL:0000115
+    label: Endothelial
+  - classes:
+      - CL:0000359
+    label: SMC
+  - classes:
+      - CL:0000669
+    label: Pericyte
+  - classes:
+      - CL:0000129
+    label: Microglial
+
+curie_map:
+  GITHUB: https://github.com/
+  GITHUBH: http://github.com/
+  VFBfbbt: http://purl.obolibrary.org/obo/fbbt/vfb/VFB_
+  VFBext: http://purl.obolibrary.org/obo/fbbt/vfb/VFBext_
+  vfbp: http://purl.obolibrary.org/obo/fbbt/vfb#
+  VFBO: http://www.virtualflybrain.org/owl/
+  FBR: http://flybase.org/reports/
+  oio: http://www.geneontology.org/formats/oboInOwl#
+  PMID: http://www.ncbi.nlm.nih.gov/pubmed/
+  VFBc: http://virtualflybrain.org/reports/VFBc_
+  VFBexp: http://virtualflybrain.org/reports/VFBexp_
+  VFB: http://virtualflybrain.org/reports/VFB_
+  VFBi: http://virtualflybrain.org/reports/VFBi_
+  VFBd: http://virtualflybrain.org/reports/
+  oio: http://www.geneontology.org/formats/oboInOwl#
+  FALDO: http://biohackathon.org/resource/faldo#
+  dce: http://purl.org/dc/elements/1.1/
+  dcterms: http://purl.org/dc/terms/
+  oban: http://purl.org/oban
+  VFB_DATA: http://virtualflybrain.org/data/
+  VFB_LICENSE: http://virtualflybrain.org/licenses/
+  VFB_API: http://virtualflybrain.org/apis/
+  VFB_SITE: http://virtualflybrain.org/site/
+  orcid: https://orcid.org/
+  doi: https://doi.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  ncbigene: http://www.ncbi.nlm.nih.gov/gene/
+  cc: http://creativecommons.org/ns#
+  fbbt_rel: http://purl.obolibrary.org/obo/fbbt#
+  pato_rel: http://purl.obolibrary.org/obo/pato#
+  so_rel: http://purl.obolibrary.org/obo/so#
+  ro_rel: http://www.obofoundry.org/ro/ro.owl#
+  owl: http://www.w3.org/2002/07/owl#
+filters:
+  solr: 
+    exclusion:
+      iri_prefix:
+        - http://virtualflybrain.org/reports/VFBc_
+      neo4j_node_label:
+        - Channel
