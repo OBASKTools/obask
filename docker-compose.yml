@@ -38,12 +38,6 @@ services:
   obask-collectdata:
     image: ghcr.io/obasktools/pipeline-collectdata:latest
     container_name: collectdata
-    build:
-      context: ../pipeline-collectdata
-      dockerfile: Dockerfile
-      args:
-        - CONF_REPO=${CONF_REPO}
-        - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
       - obask-triplestore
     volumes:
@@ -52,12 +46,6 @@ services:
   obask-updatetriplestore:
     image: ghcr.io/obasktools/pipeline-updatetriplestore:latest
     container_name: updatetriplestore
-    build:
-      context: ../pipeline-updatetriplestore
-      dockerfile: Dockerfile
-      args:
-        - CONF_REPO=${CONF_REPO}
-        - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
       obask-collectdata:
         condition: service_completed_successfully
@@ -71,12 +59,6 @@ services:
   obask-dumps:
     image: ghcr.io/obasktools/pipeline-dumps:latest
     container_name: dumps
-    build:
-      context: ../pipeline-dumps
-      dockerfile: Dockerfile
-      args:
-        - CONF_REPO=${CONF_REPO}
-        - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
       obask-updatetriplestore:
         condition: service_completed_successfully
@@ -88,12 +70,6 @@ services:
   obask-updateprod:
     image: ghcr.io/obasktools/pipeline-updateprod:latest
     container_name: updateprod
-    build:
-      context: ../pipeline-updateprod
-      dockerfile: Dockerfile
-      args:
-        - CONF_REPO=${CONF_REPO}
-        - CONF_BRANCH=${CONF_BRANCH}
     depends_on:
       obask-kb:
         condition: service_healthy

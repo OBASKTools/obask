@@ -1,12 +1,5 @@
 connect http://triplestore:8080/rdf4j-server
 connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
-connect http://triplestore:8080/rdf4j-server
 show repositories
 drop obask.
 yes
