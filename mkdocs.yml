@@ -1,0 +1,10 @@
+site_name: Ontology Based Application Starter Kit (OBASK)
+theme: readthedocs
+#markdown_extensions:
+#  - toc:
+#      permalink: true
+nav:
+  - Getting started: index.md
+  - Create a New Repo: NewRepo.md
+  - Start Curating Taxonomies: Curation.md
+repo_url: https://github.com/OBASKTools/obask
