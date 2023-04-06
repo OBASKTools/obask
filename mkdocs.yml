@@ -5,6 +5,7 @@ theme: readthedocs
 #      permalink: true
 nav:
   - Getting started: index.md
-  - Create a New Repo: NewRepo.md
-  - Start Curating Taxonomies: Curation.md
+  - Features: features.md
+  - Project quick start: quick_start.md
+  - Advanced settings: advanced_config.md
 repo_url: https://github.com/OBASKTools/obask
