@@ -1,0 +1,11 @@
+site_name: Ontology Based Application Starter Kit (OBASK)
+theme: readthedocs
+#markdown_extensions:
+#  - toc:
+#      permalink: true
+nav:
+  - Getting started: index.md
+  - Features: features.md
+  - Project quick start: quick_start.md
+  - Advanced settings: advanced_config.md
+repo_url: https://github.com/OBASKTools/obask
