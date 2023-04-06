@@ -3,3 +3,4 @@ venv
 .idea
 .DS_store
 __pycache__
+config/updatetriplestore/rdf4j_vfb.txt
