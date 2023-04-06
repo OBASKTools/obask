@@ -1,0 +1,33 @@
+name: Publish mkdocs documentation
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+#  release:
+#    types: [created]
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+
+jobs:
+  build-and-publish:
+    name: Publish mkdocs documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: mkdocs.yml
+
+#      - name: Set up Python 3.8
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.8
+#      - run: pip install mkdocs
+#      - run: mkdocs gh-deploy --force
