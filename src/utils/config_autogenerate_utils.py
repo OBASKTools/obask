@@ -17,7 +17,7 @@ def run_query(query):
     """
     # "https://ubergraph.apps.renci.org/sparql"
     sparql = SPARQLWrapper(
-        "http://localhost:8080/rdf4j-server/repositories/cap"
+        "http://localhost:8080/rdf4j-server/repositories/obask"
     )
     sparql.setReturnFormat(JSON)
     sparql.setQuery(query)
