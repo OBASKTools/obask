@@ -105,6 +105,16 @@ services:
     depends_on:
       obask-dumps:
         condition: service_completed_successfully
+  obask-ontology-search:
+    image: ghcr.io/obasktools/ontology-search:latest
+    container_name: ontology-search
+    ports: 
+     - 8007:8007
+    depends_on:
+      - solr
+      - obask-updatesolr
+    links:
+      - solr
 volumes:
   obask_data:
   solr_data:
