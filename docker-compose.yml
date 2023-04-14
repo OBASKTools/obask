@@ -81,7 +81,7 @@ services:
       - ./config/update-prod:/opt/conf_base/config/update-prod
       - obask_data:/input
   solr:
-    image: virtualflybrain/vfb-solr
+    image: solr:8.11
     container_name: solr
     ports:
      - 8993:8983
