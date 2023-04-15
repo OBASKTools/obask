@@ -5,8 +5,9 @@
 
 
 
-1. create a fork and checkout obask repository? 
-1. Customise configs
+1. Checkout obask repository, `git clone https://github.com/OBASKTools/obask.git`.
+
+2. Customise configs
     Mandatory:
     1. customize config/collectdata/vfb_fullontologies.txt
     1. config/prod/neo4j2owl_config.yaml
@@ -14,35 +15,21 @@
     1. collect sparqls
     1. dumps sparqls for labels
 
-1. update all OBASK images (add a script ??)
-1. run
-```
-docker-compose up  (--force-recreate ?)
-```
+3. run `docker-compose up -d`
 
-Services are:
-http://localhost:8080/rdf4j-server
-http://localhost:7474/browser/
+Services are:  
+[Triplestore](http://localhost:8080/rdf4j-server)  
+[Neo4J](http://localhost:7474/browser/)  
+[Solr](http://localhost:8993/solr)  
+[Ontology API](http://localhost:8007/ontology)
 
 
 ## Re-run Pipeline
 
-- docker-compose down
+Run following commands to re-run the pipeline.
 
-docker-compose build --no-cache
+1. `docker-compose down`
 
-- clean triplestore (remove container)
-- clean solr
-- clean neo4j
-- 
+2. `docker-compose build --no-cache`
 
-
-
-## TODO:
-- delete pipeline-prod project (replaced by obask-kb)
-- Can I delete CONF_REPO args from compose?
-- which solr image to use (currently virtualflybrain/vfb-solr)?
-- clean dumps sparqls
-- **** modules read config from volume
-- dumps read neo4j2owl config from local files
-- obask/src altındaki scriptler lazım mı (write_organ_tags.py etc.)
+3. `docker-compose up -d`
