@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "neo4j2owl-config schema",
+  "description": "A JSON schema for documenting and validating the neo4j2owl configuration YAML.",
+  "name": "neo4j2owl_config_schema",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "semantic_tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Specifies a set of Manchester syntax class expressions and a label. Annotates all entities that are equivalent_to or subclasses of these expression with the label using the AP: {TBA} .  In conversion to Neo4J these become neo4j:labels",
+      "properties": {
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of Manchester syntax class expressions in which OWL entities are expressed as CURIEs."
+        },
+        "label": {
+          "description": "Semantic tag name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Short description to give general information about the semantic tag, and state its purpose",
+          "type": "string"
+        }
+      },
+      "required": [ "classes", "label"]
+    }
+  },
+  "properties": {
+    "allow_entities_without_labels": {
+      "description": "Allow loading of entities without rdfs:label",
+      "type": "boolean"
+    },
+    "index": {
+      "description": "?",
+      "type": "boolean"
+    },
+    "testmode": {
+      "description": "?",
+      "type": "boolean"
+    },
+    "batch": {
+      "description": "Create and load CSVs in batches (?)",
+      "type": "boolean"
+    },
+    "batch_size": {
+      "description": "Size of batches to load",
+      "type": "integer"
+    },
+    "safe_label": {
+      "description": "?",
+      "type": "string",
+      "enum": [
+        "loose"
+      ]
+    },
+    "relation_type_threshold": {
+      "description": "neo2owl attempts to consistently cast annotation value types (property value types).  To do this it uses the threshold set here (more details TBA).",
+      "type": "number"
+    },
+    "represent_values_and_annotations_as_json": {
+      "description": "Use this to record the IRIs of annotation properties whose values should be recorded as JSON, allowing the representation of axiom annotations on annotation axioms.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "iris": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "neo_node_labelling": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/semantic_tag"
+        }
+      },
+    "curie_map": {
+      "description": "A map of prefixes to base IRIs.",
+      "type": "object",
+      "comment": "This could be improved."
+    },
+    "filters":{
+      "description": "",
+      "comment": "placeholder",
+      "type": "object"
+    }
+  }
+}
