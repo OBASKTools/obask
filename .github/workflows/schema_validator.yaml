@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ main, development ]
     paths:
-      - 'config/prod/neo4j2owl-config.yaml'
+      - 'config/dumps/neo4j2owl-config.yaml'
 
 jobs:
   yaml-schema-validation:
@@ -24,13 +24,13 @@ jobs:
     - name: Prepare schema validator comment
       if: failure()
       run: |
-        echo "config/prod/neo4j2owl-config.yaml file failed the schema validation check   " > comment.md; cat validation.report >> comment.md
+        echo "config/dumps/neo4j2owl-config.yaml file failed the schema validation check   " > comment.md; cat validation.report >> comment.md
     - name: install Yamale
       run: brew install yamale
     - name: Regex based DL validation
       id: validation
       run: |
-        yamale -s schema.yaml config/prod/neo4j2owl-config.yaml | tee output
+        yamale -s schema.yaml config/dumps/neo4j2owl-config.yaml | tee output
         tail -n +4 output > validation.report
         echo ::set-output name=report::$(cat output)
     - name: Prepare DL validator comment
@@ -40,7 +40,7 @@ jobs:
         exit 1
     - name: Prepare success comment
       run: |
-        echo "config/prod/neo4j2owl-config.yaml file passed validation check   " > comment.md
+        echo "config/dumps/neo4j2owl-config.yaml file passed validation check   " > comment.md
     - name: Post comment validator comment
       if: always()
       env:
