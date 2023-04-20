@@ -13,7 +13,10 @@ represent_values_and_annotations_as_json:
     - "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"
     - "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym"
 
-neo_node_labelling: {}
+neo_node_labelling: 
+  - classes:
+      - RO:0000053 some PATO:0070015
+    label: Pyramidal
 
 
 curie_map:
