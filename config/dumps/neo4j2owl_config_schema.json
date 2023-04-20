@@ -26,8 +26,7 @@
           "description": "Short description to give general information about the semantic tag, and state its purpose",
           "type": "string"
         }
-      },
-      "required": [ "classes", "label"]
+      }
     }
   },
   "properties": {
