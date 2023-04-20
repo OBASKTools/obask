@@ -30,13 +30,13 @@ jobs:
     - name: Regex based DL validation
       id: validation
       run: |
-        yamale -s schema.yaml config/dumps/neo4j2owl-config.yaml | tee output
+        yamale -s config/dumps/yamale_validation/schema.yaml config/dumps/neo4j2owl-config.yaml | tee output
         tail -n +4 output > validation.report
         echo ::set-output name=report::$(cat output)
     - name: Prepare DL validator comment
       if: contains(steps.validation.outputs.report, 'Error')
       run: |
-        echo "<details>   <summary> config/prod/neo4j2owl-config.yaml file failed the regex based DL validation check </summary>   " > comment.md; cat validation.report >> comment.md
+        echo "<details>   <summary> config/dumps/neo4j2owl-config.yaml file failed the regex based DL validation check </summary>   " > comment.md; cat validation.report >> comment.md
         exit 1
     - name: Prepare success comment
       run: |
