@@ -2,7 +2,7 @@ name: YAML schema validator
 on:
   # Triggers the workflow on pull request events but only for the main branch
   pull_request:
-    branches: [ main, development ]
+    branches: [ main ]
     paths:
       - 'config/dumps/neo4j2owl-config.yaml'
 
