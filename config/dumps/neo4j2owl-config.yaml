@@ -13,7 +13,13 @@ represent_values_and_annotations_as_json:
     - "http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"
     - "http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym"
 
-neo_node_labelling: {}
+neo_node_labelling:
+  - classes:
+      - wine:red_wine
+    label: Red_wine
+  - classes:
+      - wine:white_wine
+    label: White_wine
 
 
 curie_map:
@@ -41,5 +47,6 @@ curie_map:
   SO: http://purl.obolibrary.org/obo/SO_
   OBI: http://purl.obolibrary.org/obo/OBI_
   PCL: http://purl.obolibrary.org/obo/PCL_
+  wine: http://www.semanticweb.org/davidos/ontologies/2020/9/wine.owl#
 
 filters: {}
