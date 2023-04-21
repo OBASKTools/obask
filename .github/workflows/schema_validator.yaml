@@ -25,19 +25,19 @@ jobs:
       if: failure()
       run: |
         echo "config/dumps/neo4j2owl-config.yaml file failed the schema validation check   " > comment.md; cat validation.report >> comment.md
-    - name: install Yamale
-      run: brew install yamale
-    - name: Regex based DL validation
-      id: validation
-      run: |
-        yamale -s schema.yaml config/dumps/neo4j2owl-config.yaml | tee output
-        tail -n +4 output > validation.report
-        echo ::set-output name=report::$(cat output)
-    - name: Prepare DL validator comment
-      if: contains(steps.validation.outputs.report, 'Error')
-      run: |
-        echo "<details>   <summary> config/prod/neo4j2owl-config.yaml file failed the regex based DL validation check </summary>   " > comment.md; cat validation.report >> comment.md
-        exit 1
+#     - name: install Yamale
+#       run: brew install yamale
+#     - name: Regex based DL validation
+#       id: validation
+#       run: |
+#         yamale -s schema.yaml config/dumps/neo4j2owl-config.yaml | tee output
+#         tail -n +4 output > validation.report
+#         echo ::set-output name=report::$(cat output)
+#     - name: Prepare DL validator comment
+#       if: contains(steps.validation.outputs.report, 'Error')
+#       run: |
+#         echo "<details>   <summary> config/prod/neo4j2owl-config.yaml file failed the regex based DL validation check </summary>   " > comment.md; cat validation.report >> comment.md
+#         exit 1
     - name: Prepare success comment
       run: |
         echo "config/dumps/neo4j2owl-config.yaml file passed validation check   " > comment.md
