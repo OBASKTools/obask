@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/EBISPOT/ontology_editor_training/main/wine-full.owl
+https://raw.githubusercontent.com/OBASKTools/obask/delete_proj_spec_conf/demo/wine-full.owl
