@@ -3,7 +3,7 @@ index: false
 testmode: false
 batch: true
 safe_label: loose
-batch_size: 100000000
+batch_size: 100000001
 relation_type_threshold: 0.95
 represent_values_and_annotations_as_json:
   iris:  # This lists standard OBO APs that are typically annotated.  Representing as JSON captures annotations
