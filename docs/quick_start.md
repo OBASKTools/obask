@@ -20,8 +20,7 @@
 Services are:  
 - Neo4J, [http://localhost:7474/browser/](http://localhost:7474/browser/)   
 - Solr, [http://localhost:8993/solr](http://localhost:8993/solr)  
-- Ontology API, [http://localhost:8007/ontology](http://localhost:8007/ontology)   
-- Triplestore, [http://localhost:8080/rdf4j/](http://localhost:8080/rdf4j/)       
+- Ontology API, [http://localhost:8007/ontology](http://localhost:8007/ontology)        
 - Triplestore, [http://localhost:8080/rdf4j-workbench/repositories/obask/summary](http://localhost:8080/rdf4j-workbench/repositories/obask/summary)       
 
 
