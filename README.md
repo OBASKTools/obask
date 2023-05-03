@@ -32,7 +32,7 @@ Server and data pipelines are combined into 3 general sub-pipelines which are co
 
 - _Image_: yyz1989/rdf4j:latest ([dockerhub](https://hub.docker.com/repository/docker/yyz1989/rdf4j/builds))
 - _Git_: We do not maintain this, see [ticket](https://github.com/VirtualFlyBrain/vfb-pipeline-triplestore/issues/2)
-- _Summary_: The triplestore is currently an unspectacular default implementation of rdf4j-server. We make use of a simple in-memory store that is configured [here](https://github.com/VirtualFlyBrain/vfb-pipeline-triplestore/blob/master/rdf4j_vfb.txt). The container is maintained elsewhere (see docker-hub pages of image for details).
+- _Summary_: The triplestore is currently an unspectacular default implementation of rdf4j-server. We make use of a simple in-memory store that is configured [here](https://github.com/VirtualFlyBrain/vfb-pipeline-triplestore/blob/master/rdf4j.txt). The container is maintained elsewhere (see docker-hub pages of image for details).
 
 ### Data pipeline: pipeline-collectdata
 
