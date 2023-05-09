@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/obophenotype/brain_data_standards_ontologies/master/bdso-allen.owl
+https://raw.githubusercontent.com/OBASKTools/obask/whole_mouse/demo/bdso-full.owl
