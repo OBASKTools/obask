@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/OBASKTools/obask/whole_mouse/demo/bdso-full.owl
+https://raw.githubusercontent.com/OBASKTools/obask/whole_mouse/config/collectdata/bdso-full.owl

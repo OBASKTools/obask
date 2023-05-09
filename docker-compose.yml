@@ -43,7 +43,7 @@ services:
       - ./config/collectdata:/opt/conf_base/config/collectdata
       - obask_data:/out
   obask-updatetriplestore:
-    image: ghcr.io/obasktools/pipeline-updatetriplestore:latest
+    image: ghcr.io/obasktools/pipeline-updatetriplestore:0.0.2
     container_name: updatetriplestore
     depends_on:
       obask-collectdata:

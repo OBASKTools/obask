@@ -15,7 +15,7 @@
     1. collect sparqls
     1. dumps sparqls for labels
 
-3. run `docker-compose up -d`
+3. run `docker-compose up`
 
 Services are:  
 - Neo4J, [http://localhost:7474/browser/](http://localhost:7474/browser/)   
@@ -32,4 +32,4 @@ Run following commands to re-run the pipeline.
 
 2. `docker-compose build --no-cache`
 
-3. `docker-compose up -d`
+3. `docker-compose up`
