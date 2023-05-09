@@ -54,10 +54,10 @@ neo_node_labelling:
       - CL:4023051
       - RO:0015002 some CL:0000129
     label: VLMC
-  - classes:
-      - CL:4023065
-      - RO:0015002 some CL:4023065
-    label: Meis2
+#  - classes:
+#      - CL:4023065
+#      - RO:0015002 some CL:4023065
+#    label: Meis2
   - classes:
       - UBERON:0002616
       - RO:0015002 some UBERON:0002616
@@ -159,9 +159,6 @@ neo_node_labelling:
   - classes:
       - RO:0000053 some PATO:0070030
     label: Near_projecting
-  - classes:
-      - RO:0000053 some PATO:0070031
-    label: Corticomedulla
 ##specific badges##
   - classes:
       - RO:0002162 some NCBITaxon:10090
@@ -169,12 +166,12 @@ neo_node_labelling:
   - classes:
       - RO:0002100 some UBERON:0000956
     label: Cerebral_cortex
-  - classes:
-      - RO:0002100 some UBERON:0001384
-    label: Primary_motor_cortex
-  - classes:
-      - RO:0002100 some UBERON:0002771
-    label: MTG
+#  - classes:
+#      - RO:0002100 some UBERON:0001384
+#    label: Primary_motor_cortex
+#  - classes:
+#      - RO:0002100 some UBERON:0002771
+#    label: MTG
 
 
 curie_map:
