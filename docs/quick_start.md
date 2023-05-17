@@ -1,35 +1,46 @@
 # OBASK Quick start
 
 ## Prerequisites:
+
 1. Update to docker compose V2 (>= Docker Compose version v2.17) (see [https://docs.docker.com/compose/install/linux/](https://docs.docker.com/compose/install/linux/))
 
-
+## Create your project:
 
 1. Checkout obask repository, `git clone https://github.com/OBASKTools/obask.git`.
 
-2. Customise configs
+2. Customise your configs:
+
     Mandatory:
-    1. customize config/collectdata/vfb_fullontologies.txt
-    1. config/prod/neo4j2owl_config.yaml
+    - customize config/collectdata/vfb_fullontologies.txt
+    - config/prod/neo4j2owl_config.yaml
+    
     Advanced:
-    1. collect sparqls
-    1. dumps sparqls for labels
+    - collect /sparqls
+    - dumps /sparqls for labels
 
-3. run `docker-compose up -d`
+## Run your project:
 
-Services are:  
+When ready, run: 
+
+`docker-compose up -d`
+
+Once the pipeline is complete, your services will be live at:  
 - Neo4J, [http://localhost:7474/browser/](http://localhost:7474/browser/)   
 - Solr, [http://localhost:8993/solr](http://localhost:8993/solr)  
 - Ontology API, [http://localhost:8007/ontology](http://localhost:8007/ontology)        
 - Triplestore, [http://localhost:8080/rdf4j-workbench/repositories/obask/summary](http://localhost:8080/rdf4j-workbench/repositories/obask/summary)       
 
 
-## Re-run Pipeline
+## Re-run your project
 
-Run following commands to re-run the pipeline.
+If you are not 100% happy with the output and want to do further configurations, you can safely shutdown and clean all services through:
 
-1. `docker-compose down`
+`docker-compose down`
 
-2. `docker-compose build --no-cache`
+Then you can continue customizing your configurations and run the pipeline again to see them in action via:
 
-3. `docker-compose up -d`
+`docker-compose up -d`
+
+## Troubleshooting
+
+

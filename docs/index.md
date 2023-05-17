@@ -9,3 +9,4 @@ With OBASK, users can harness the full potential of their ontologies to create p
 - [OBASK Features]()
 - [Quick Start My Project](quick_start.md)
 - [Advanced Configurations]()
+- [Architecture](architecture.md)
