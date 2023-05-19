@@ -6,9 +6,36 @@
 
 ## Create your project:
 
-1. Checkout obask repository, `git clone https://github.com/OBASKTools/obask.git`.
+1. [Install cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html#install-cookiecutter)
 
-2. Customise your configs:
+`python3 -m pip install --user cookiecutter`
+
+or
+
+`conda install cookiecutter`
+
+2. Navigate to a folder where you want to create your new pipeline project and run the OBASK project template
+
+`cookiecutter gh:OBASKTools/obask-template`
+
+3. Navigate to your newly created project folder and initialize the git repository
+
+```
+git init -b main
+git add .
+git commit -m "First commit"
+```
+
+Create a new repository
+
+Push the existing repository to GitHub
+```
+git remote add origin https://github.com/OBASKTools/obask-template.git
+git branch -M main
+git push -u origin main
+```
+
+4. Customise your configs:
 
     Mandatory:
     - customize config/collectdata/vfb_fullontologies.txt
