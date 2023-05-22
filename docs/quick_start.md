@@ -18,22 +18,29 @@ or
 
 `cookiecutter gh:OBASKTools/obask-template`
 
-3. Navigate to your newly created project folder and initialize the git repository
+Then provide your `project_name` when asked.
 
-```
-git init -b main
-git add .
-git commit -m "First commit"
-```
+3. Commit your project to GitHub. Be bold, if you are not satisfied with the result, you can delete the repository and create it again as many times as you want.
 
-Create a new repository
+    - Navigate to your newly created project folder and initialize the git repository.
+    ```
+    git init -b main
+    git add .
+    git commit -m "First commit"
+    ```
 
-Push the existing repository to GitHub
-```
-git remote add origin https://github.com/OBASKTools/obask-template.git
-git branch -M main
-git push -u origin main
-```
+    - [Create a new repository](https://github.com/new). Repo name should be same with the `project_name` you provided to the template.
+
+    - Do not initialize with a README (you already have one)
+
+    - Click Create
+
+    - See the section under "…or push an existing repository from the command line". Follow the instructions there. E.g. (make sure the location of your remote is exactly correct!).
+    ```
+    git remote add origin https://github.com/MyRepo/my_project_name.git
+    git branch -M main
+    git push -u origin main
+    ```
 
 4. Customise your configs:
 

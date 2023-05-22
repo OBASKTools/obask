@@ -2,7 +2,7 @@
 
 Ontology Based Application Starter Kit (OBASK) is an innovative tool that empowers users to easily create search and knowledge exploration applications using their ontologies, without the need for any programming skills. With OBASK, users can quickly kickstart an ontology-driven application by simply defining their input ontologies and providing gross classifications via configuration files.
 
-WARNING:_OBASK tools originated with work carried out to support the [Virtual Fly Brain](virtualflybrain.org) project, the [Allen Cell-Type Knowledge Explorer](https://knowledge.brain-map.org/celltypes) and the [Cell Annotation Platform](celltype.info). Work to split this out into OBASK tools is currently ongoing and so code on this repo should be considered Alpha and may be subject to breaking changes._
+_OBASK tools originated with work carried out to support the [Virtual Fly Brain](virtualflybrain.org) project, the [Allen Cell-Type Knowledge Explorer](https://knowledge.brain-map.org/celltypes) and the [Cell Annotation Platform](celltype.info). Code on this collection of repos should be considered a first beta release.  Work is ongoing to improve documentation and testing of user config._
 
 Once the configuration is set up, OBASK takes care of the heavy lifting, automatically generating knowledge search endpoints, Solr indexes, and materialized knowledge graphs with a single command. This means that users can focus on exploring and analyzing their data without getting bogged down in technical details.
 
