@@ -9,7 +9,7 @@ OBASK pipeline comprises three servers/services and four data pipelines:
   - Neo4J production instance (`obask-kb`)
 - Pipeline _data pipelines_:
   - Data collection (`pipeline-collectdata`)
-  - Triple store ingestion (`pipeline-updatetriplestore`)
+  - Triplestore ingestion (`pipeline-updatetriplestore`)
   - Data transformation and dumps for production instances (`pipeline-dumps`)
   - KG production instance ingestion (`pipeline-updateprod`)
 
