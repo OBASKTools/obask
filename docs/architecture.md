@@ -44,7 +44,7 @@ Server and data pipelines are combined into 3 general sub-pipelines which are co
   1. Removing embargoed data. The technique applied here is based on using ROBOT query and encoding the embargo logic as SPARQL queries (combined with `ROBOT remove`).
   1. Ontologies in [project configuration](https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_fullontologies.txt) are imported in their entirety.
   1. Ontologies in [slice configuration](https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_slices.txt) are sliced. The slice corresponds to a BOTTOM module that has the combined signature of all ontologies in the fullontologies section with the signature of the KB.
-  1. All ontologies are converted to turtle.
+  1. All ontologies are converted to turtle format.
   1. All ontologies ready to be imported into the triplestore are gzipped.
 
 ### Data pipeline: pipeline-updatetriplestore
