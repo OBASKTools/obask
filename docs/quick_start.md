@@ -45,8 +45,8 @@ Then provide your `project_name` when asked.
 4. Customise your configs:
 
     Mandatory:
-    - customize config/collectdata/vfb_fullontologies.txt
-    - config/prod/neo4j2owl_config.yaml
+    - config/collectdata/vfb_fullontologies.txt
+    - config/prod/neo4j2owl_config.yaml (see https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl)
     
     Advanced:
     - collect /sparqls
@@ -56,7 +56,7 @@ Then provide your `project_name` when asked.
 
 When ready, run: 
 
-`docker-compose up -d`
+`docker-compose up`
 
 Once the pipeline is complete, your services will be live at:  
 - Neo4J, [http://localhost:7474/browser/](http://localhost:7474/browser/)   
@@ -73,8 +73,21 @@ If you are not 100% happy with the output and want to do further configurations,
 
 Then you can continue customizing your configurations and run the pipeline again to see them in action via:
 
-`docker-compose up -d`
+`docker-compose up`
 
 ## Troubleshooting
 
+1- Dumps: Semantic tag labels should not contain a space character in the `config/prod/neo4j2owl_config.yaml`
+
+1- Dumps: `Parser Exception` with a message similar to:
+
+```
+Caused by: org.semanticweb.owlapi.manchestersyntax.renderer.ParserException: Encountered RO_0002100 at line 1 column 1. Expected one of:
+ 	Class name
+ 	Object property name
+ 	Data property name
+ 	inverse
+ 	not
+```
+This error indicates that the mentioned entity (in this case `RO_0002100`) is used in the `config/prod/neo4j2owl_config.yaml`, but it could not be found in any of the input ontologies (`config/collectdata/vfb_fullontologies.txt`). Problem in this case is a typographical error: `RO_0002100` should be used in its curie form `RO:0002100` in the `config/prod/neo4j2owl_config.yaml`.
 
