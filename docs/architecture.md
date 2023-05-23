@@ -4,7 +4,7 @@ OBASK pipeline comprises three servers/services and four data pipelines:
 
 - Pipeline _servers_:
   - Triplestore
-  - SOLr + preconfigured SOLr core
+  - Solr + preconfigured Solr core
   - Search API (`ontology-search`)
   - Neo4J production instance (`obask-kb`)
 - Pipeline _data pipelines_:
