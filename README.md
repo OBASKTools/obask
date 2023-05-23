@@ -1,15 +1,20 @@
 # Ontology Based Application Starter Kit (OBASK)
 
-Configurations for the Ontology Based Application Starter Kit
+Ontology Based Application Starter Kit (OBASK) is an innovative tool that empowers users to easily create search and knowledge exploration applications using their ontologies, without the need for any programming skills. With OBASK, users can quickly kickstart an ontology-driven application by simply defining their input ontologies and providing gross classifications via configuration files.
 
 _OBASK tools originated with work carried out to support the [Virtual Fly Brain](virtualflybrain.org) project, the [Allen Cell-Type Knowledge Explorer](https://knowledge.brain-map.org/celltypes) and the [Cell Annotation Platform](celltype.info). Code on this collection of repos should be considered a first beta release.  Work is ongoing to improve documentation and testing of user config._
+
+Once the configuration is set up, OBASK takes care of the heavy lifting, automatically generating knowledge search endpoints, Solr indexes, and materialized knowledge graphs with a single command. This means that users can focus on exploring and analyzing their data without getting bogged down in technical details.
+
+With OBASK, users can harness the full potential of their ontologies to create powerful and insightful applications that enable them to better understand and analyze their data.
 
 OBASK pipeline comprises three servers/services and four data pipelines:
 
 - Pipeline _servers_:
-  - Triple store
+  - Triplestore
   - SOLr + preconfigured SOLr core
-  - Neo4J production instance (`pipeline-prod`)
+  - Search API (`ontology-search`)
+  - Neo4J production instance (`obask-kb`)
 - Pipeline _data pipelines_:
   - Data collection (`pipeline-collectdata`)
   - Triple store ingestion (`pipeline-updatetriplestore`)
@@ -18,96 +23,15 @@ OBASK pipeline comprises three servers/services and four data pipelines:
 
 Server and data pipelines are combined into 3 general sub-pipelines which are configured as Docker compose services. This documentation describes all 3 sub-pipelines in detail, including which role the individual servers and data pipelines play.
 
-![Pipeline Overview](pipeline-overview.png)
+![Pipeline Overview](docs/pipeline-overview.png)
 
-## Sub-pipeline: Deploy triplestore
+## Start using OBASK
 
-- _Summary_: This pipeline deploys an empty triplestore, collects all relevant data (including KB and ontologies), and pre-processes and loads the collected data into the triplestore. Components:
-  - Triplestore
-  - `pipeline-collectdata` (data collection and preprocessing pipeline for all resources)
-  - `pipeline-updatetriplestore` (loading collected data into the triplestore)
-- _Dependents_: `pipeline-dumps`
+Please follow the [quick start guide](https://obasktools.github.io/obask/quick_start/).
 
-### Service: Triplestore
+## OBASK Architecture
 
-- _Image_: yyz1989/rdf4j:latest ([dockerhub](https://hub.docker.com/repository/docker/yyz1989/rdf4j/builds))
-- _Git_: We do not maintain this, see [ticket](https://github.com/VirtualFlyBrain/vfb-pipeline-triplestore/issues/2)
-- _Summary_: The triplestore is currently an unspectacular default implementation of rdf4j-server. We make use of a simple in-memory store that is configured [here](https://github.com/VirtualFlyBrain/vfb-pipeline-triplestore/blob/master/rdf4j.txt). The container is maintained elsewhere (see docker-hub pages of image for details).
+See the [architecture documentation](https://obasktools.github.io/obask/architecture/).
 
-### Data pipeline: pipeline-collectdata
 
-- _Git_: https://github.com/OBASKTools/pipeline-collectdata
-- [Dockerfile](https://github.com/OBASKTools/pipeline-collectdata/blob/master/Dockerfile)
-- _Summary_: This container encapsulates a process that downloads a number of source ontologies, and applies a number of ROBOT-based pre-processing steps, in particular: extracting modules/slices of external ontologies, running consistency checks and serialising as ttl for quicker ingest into triplestore. It also contains the _data embargo_ pipeline and has some provisions for _shacl validation_.
 
-#### neo4j2owl:exportOWL()
-
-- Exporting the KB into OWL2 is managed through a custom procedure (`exportOWL()`) implemented in the [neo4j2owl plugin](https://github.com/VirtualFlyBrain/neo4j2owl).
-- The plugin is documented in detail in the [repos readme](https://github.com/VirtualFlyBrain/neo4j2owl/blob/master/README.md)
-
-#### Detailed notes on pipeline-collectdata
-
-- The process is encoded [here](https://github.com/OBASKTools/pipeline-collectdata/blob/master/process.sh). It performs the following steps:
-  1. Downloading external ontologies.
-  1. Removing embargoed data. The technique applied here is based on using ROBOT query and encoding the embargo logic as SPARQL queries (combined with `ROBOT remove`).
-  1. Ontologies in [project configuration](https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_fullontologies.txt) are imported in their entirety.
-  1. Ontologies in [slice configuration](https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_slices.txt) are sliced. The slice corresponds to a BOTTOM module that has the combined signature of all ontologies in the fullontologies section with the signature of the KB.
-  1. All ontologies are converted to turtle.
-  1. All ontologies ready to be imported into the triplestore are gzipped.
-
-### Data pipeline: pipeline-updatetriplestore
-
-- _Image_: [dockerhub](https://hub.docker.com/repository/docker/virtualflybrain/vfb-pipeline-updatetriplestore/builds)
-- [Dockerfile](https://github.com/OBASKTools/pipeline-updatetriplestore/blob/master/Dockerfile)
-- _Git_: https://github.com/OBASKTools/pipeline-updatetriplestore
-- _Summary_: This container encapsulates a process that (1) sets up the triplestores and (2) loads all of the ttl files generated by pipeline-collectdata into the triplestore. The image contains the configuration details of triplestore, like choice of triplestore engine.
-
-#### Detailed notes on pipeline-updatetriplestore:
-
-- The [process](https://github.com/OBASKTools/pipeline-updatetriplestore/blob/master/process.sh) loads the ontologies and data collected in the previous step into the triple store.
-
-## Sub-pipeline: Data transformation and dumps for production instances (pipeline-dumps)
-
-- _Summary_: This pipeline transforms the knowledge graph in the triplestore into various custom dumps used by downstream services such as the production knowledge graph (neo4j) instance and solr.
-- _Depends on_: Triplestore
-- _Dependents_: pipeline-prod
-
-### Data pipeline: pipeline-dumps
-
-- _Image_: [dockerhub](https://hub.docker.com/repository/docker/virtualflybrain/vfb-pipeline-dumps/builds)
-- _Git_: https://github.com/OBASKTools/pipeline-dumps
-- _Summary_: The dumps pipeline access the triple store to obtain data dumps that in mungs, transforms and enriches for various downstream purposes such as pipeline-prod ingestion and solr ingestion.
-- [Dockerfile](https://github.com/OBASKTools/pipeline-dumps/blob/master/Dockerfile)
-
-#### Detailed notes on pipeline-dumps
-
-- The [process](https://github.com/OBASKTools/pipeline-dumps/blob/master/process.sh) performs the following steps (all encoded in the [Makefile](https://github.com/OBASKTools/pipeline-dumps/blob/master/dumps.Makefile)):
-  1. Build dump for `pipeline-prod` (KG production instance)
-  1. Build dump for `solr` (special json file, created using python)
-
-## Sub-pipeline: Knowledge Graph (pipeline-prod)
-
-- _Summary_: This pipeline deploys the production instance of the Knowledge Graph (neo4j database) and loads all the relevant data.
-- _Depends on_: pipeline-dumps
-- _Dependents_: None
-
-### Service: pipeline-prod
-
-- _Image_: [dockerhub](https://hub.docker.com/repository/docker/virtualflybrain/vfb-prod/builds)
-- _Git_: https://github.com/OBASKTools/pipeline-prod
-- [Dockerfile](https://github.com/OBASKTools/pipeline-prod/blob/master/Dockerfile)
-- _Summary_: Deploys an empty, configured instance of a Neo4J database with the [neo2owl plugin](https://github.com/VirtualFlyBrain/neo4j2owl), and APOC tools.
-
-### Data pipeline: pipeline-updateprod
-
-- _Image_: [dockerhub](https://hub.docker.com/repository/docker/virtualflybrain/vfb-pipeline-update-prod/builds)
-- _Git_: https://github.com/OBASKTools/pipeline-updateprod
-- [Dockerfile](https://github.com/OBASKTools/pipeline-updateprod/blob/master/Dockerfile)
-- _Summary_: The update-prod container currently takes an ontology (from the integration layer) and loads it into the the Neo4J instance (pipeline-prod) using the neo2owl plugin. Process"
-  1. Loading the ontology using the `neo4j2owl:owl2Import()` procedure
-  1. Setting a number of indices (see detailed notes below).
-
-#### Detailed notes about pipeline-updateprod
-
-- You can set additional Pipeline post-processing steps like indices by editing [this file](https://github.com/OBASKTools/obask/blob/main/config/update-prod/pdb_set_indices.neo4j). Note that this file can be used to set arbitrary post-processing cypher queries, not just indices (contrary to the file name). Essentially, all list cypher queries are executed in order right after PDB import is completed.
-- The possible configuration settings for the `neo4j2owl:owl2Import()` procedure are described [here](https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl). The configuration is stored [here](https://github.com/OBASKTools/obask/blob/main/config/prod/neo4j2owl-config.yaml).
