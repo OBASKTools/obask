@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/obophenotype/brain_data_standards_ontologies/master/bdso-allen.owl
+https://raw.githubusercontent.com/ubyndr/wine-ontology/main/kidney_non_redundant.owl
