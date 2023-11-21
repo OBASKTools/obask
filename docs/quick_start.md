@@ -18,6 +18,10 @@ or
 
 `cookiecutter gh:OBASKTools/obask-template`
 
+or
+
+`python3 -m cookiecutter gh:OBASKTools/obask-template`
+
 Then provide your `project_name` when asked.
 
 3. Commit your project to GitHub. Be bold, if you are not satisfied with the result, you can delete the repository and create it again as many times as you want.
