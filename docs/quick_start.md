@@ -28,9 +28,9 @@ Then provide your `project_name` when asked.
 
     - Navigate to your newly created project folder and initialize the git repository.
     ```
-    git init -b main
-    git add .
-    git commit -m "First commit"
+    git init -b main 
+    git add . 
+    git commit -m "First commit" 
     ```
 
     - [Create a new repository](https://github.com/new). Repo name should be same with the `project_name` you provided to the template.
@@ -41,9 +41,9 @@ Then provide your `project_name` when asked.
 
     - See the section under "…or push an existing repository from the command line". Follow the instructions there. E.g. (make sure the location of your remote is exactly correct!).
     ```
-    git remote add origin https://github.com/MyRepo/my_project_name.git
-    git branch -M main
-    git push -u origin main
+    git remote add origin https://github.com/MyRepo/my_project_name.git 
+    git branch -M main 
+    git push -u origin main 
     ```
 
 4. Customise your configs:
