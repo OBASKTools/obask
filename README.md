@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/588526260.svg)](https://zenodo.org/doi/10.5281/zenodo.10518989)
+
 # Ontology Based Application Starter Kit (OBASK)
 
 Ontology Based Application Starter Kit (OBASK) is an innovative tool that empowers users to easily create search and knowledge exploration applications using their ontologies, without the need for any programming skills. With OBASK, users can quickly kickstart an ontology-driven application by simply defining their input ontologies and providing gross classifications via configuration files.
