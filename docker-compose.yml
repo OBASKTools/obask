@@ -11,7 +11,7 @@ services:
     volumes:
       - triplestore_data:/var/rdf4j
   obask-kb:
-    image: ghcr.io/obasktools/obask-kb:latest
+    image: ghcr.io/obasktools/obask-kb:0.0.5
     container_name: obask-kb
     environment:
       - NEO4J_AUTH=neo4j/neo
@@ -35,7 +35,7 @@ services:
       retries: 20
       start_period: 3s
   obask-collectdata:
-    image: ghcr.io/obasktools/pipeline-collectdata:latest
+    image: ghcr.io/obasktools/pipeline-collectdata:0.0.2
     container_name: collectdata
     depends_on:
       - triplestore
@@ -43,7 +43,7 @@ services:
       - ./config/collectdata:/opt/conf_base/config/collectdata
       - obask_data:/out
   obask-updatetriplestore:
-    image: ghcr.io/obasktools/pipeline-updatetriplestore:latest
+    image: ghcr.io/obasktools/pipeline-updatetriplestore:0.1.3
     container_name: updatetriplestore
     depends_on:
       obask-collectdata:
@@ -56,7 +56,7 @@ services:
       - ./config/updatetriplestore:/opt/conf_base/config/updatetriplestore
       - obask_data:/data
   obask-dumps:
-    image: ghcr.io/obasktools/pipeline-dumps:latest
+    image: ghcr.io/obasktools/pipeline-dumps:0.0.3
     container_name: dumps
     depends_on:
       obask-updatetriplestore:
@@ -67,7 +67,7 @@ services:
       - ./config/dumps:/opt/conf_base/config/dumps
       - obask_data:/out
   obask-updateprod:
-    image: ghcr.io/obasktools/pipeline-updateprod:latest
+    image: ghcr.io/obasktools/pipeline-updateprod:0.0.2
     container_name: updateprod
     depends_on:
       obask-kb:
@@ -96,7 +96,7 @@ services:
     - "-c"
     - "precreate-core ontology; precreate-core bdsdump; exec solr -f"
   obask-updatesolr:
-    image: ghcr.io/obasktools/pipeline-updatesolr:latest
+    image: ghcr.io/obasktools/pipeline-updatesolr:0.0.1
     container_name: updatesolr
     links:
       - solr
@@ -106,7 +106,7 @@ services:
       obask-dumps:
         condition: service_completed_successfully
   obask-ontology-search:
-    image: ghcr.io/obasktools/ontology-search:latest
+    image: ghcr.io/obasktools/ontology-search:0.0.3
     container_name: ontology-search
     ports: 
      - 8007:8007
