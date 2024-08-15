@@ -24,7 +24,7 @@ OBASK pipeline comprises three servers/services and five data pipelines:
   - KG production instance ingestion ([pipeline-updateprod](https://github.com/OBASKTools/pipeline-updateprod))
   - Solr index update ([obask-updatesolr](https://github.com/OBASKTools/pipeline-updatesolr))
 
-Server and data pipelines are combined into 3 general sub-pipelines which are configured as Docker compose services. This documentation describes all 3 sub-pipelines in detail, including which role the individual servers and data pipelines play.
+Server and data pipelines are combined into 4 general sub-pipelines which are configured as Docker compose services. This documentation describes all 4 sub-pipelines in detail, including which role the individual servers and data pipelines play.
 
 ![Pipeline Overview](docs/pipeline-overview.png)
 
