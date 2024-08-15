@@ -10,18 +10,19 @@ Once the configuration is set up, OBASK takes care of the heavy lifting, automat
 
 With OBASK, users can harness the full potential of their ontologies to create powerful and insightful applications that enable them to better understand and analyze their data.
 
-OBASK pipeline comprises three servers/services and four data pipelines:
+OBASK pipeline comprises three servers/services and five data pipelines:
 
 - Pipeline _servers_:
   - Triplestore
   - SOLr + preconfigured SOLr core
-  - Search API (`ontology-search`)
-  - Neo4J production instance (`obask-kb`)
+  - Search API ([ontology-search](https://github.com/OBASKTools/ontology-search))
+  - Neo4J production instance ([obask-kb](https://github.com/OBASKTools/obask-kb))
 - Pipeline _data pipelines_:
-  - Data collection (`pipeline-collectdata`)
-  - Triple store ingestion (`pipeline-updatetriplestore`)
-  - Data transformation and dumps for production instances (`pipeline-dumps`)
-  - KG production instance ingestion (`pipeline-updateprod`)
+  - Data collection ([pipeline-collectdata](https://github.com/OBASKTools/pipeline-collectdata))
+  - Triple store ingestion ([pipeline-updatetriplestore](https://github.com/OBASKTools/pipeline-updatetriplestore))
+  - Data transformation and dumps for production instances ([pipeline-dumps](https://github.com/OBASKTools/pipeline-dumps))
+  - KG production instance ingestion ([pipeline-updateprod](https://github.com/OBASKTools/pipeline-updateprod))
+  - Solr index update ([obask-updatesolr](https://github.com/OBASKTools/pipeline-updatesolr))
 
 Server and data pipelines are combined into 3 general sub-pipelines which are configured as Docker compose services. This documentation describes all 3 sub-pipelines in detail, including which role the individual servers and data pipelines play.
 
