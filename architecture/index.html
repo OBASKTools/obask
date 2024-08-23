@@ -1,0 +1,678 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>OBASK Architecture - Ontology Based Application Starter Kit (OBASK)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#obask-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ontology Based Application Starter Kit (OBASK)" class="md-header__button md-logo" aria-label="Ontology Based Application Starter Kit (OBASK)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ontology Based Application Starter Kit (OBASK)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OBASK Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/OBASKTools/obask" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ontology Based Application Starter Kit (OBASK)" class="md-nav__button md-logo" aria-label="Ontology Based Application Starter Kit (OBASK)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ontology Based Application Starter Kit (OBASK)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/OBASKTools/obask" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project quick start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced_config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sub-pipeline-deploy-triplestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sub-pipeline: Deploy triplestore
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-pipeline: Deploy triplestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-triplestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service: Triplestore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline-pipeline-collectdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pipeline: pipeline-collectdata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data pipeline: pipeline-collectdata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-notes-on-pipeline-collectdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed notes on pipeline-collectdata
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline-pipeline-updatetriplestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pipeline: pipeline-updatetriplestore
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data pipeline: pipeline-updatetriplestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-notes-on-pipeline-updatetriplestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed notes on pipeline-updatetriplestore:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-pipeline-data-transformation-and-dumps-for-production-instances-pipeline-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sub-pipeline: Data transformation and dumps for production instances (pipeline-dumps)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-pipeline: Data transformation and dumps for production instances (pipeline-dumps)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline-pipeline-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pipeline: pipeline-dumps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data pipeline: pipeline-dumps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-notes-on-pipeline-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed notes on pipeline-dumps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-pipeline-knowledge-graph-obask-kb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sub-pipeline: Knowledge Graph (obask-kb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-pipeline: Knowledge Graph (obask-kb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-obask-kb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service: obask-kb
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline-pipeline-updateprod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pipeline: pipeline-updateprod
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data pipeline: pipeline-updateprod">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-notes-about-pipeline-updateprod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed notes about pipeline-updateprod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-pipeline-ontology-search-ontology-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sub-pipeline: Ontology Search (ontology-search)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-pipeline: Ontology Search (ontology-search)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-solr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service: Solr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline-pipeline-updatesolr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data pipeline: pipeline-updatesolr
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-ontology-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service: ontology-search
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="obask-architecture">OBASK Architecture</h1>
+<p>OBASK pipeline comprises three servers/services and four data pipelines:</p>
+<ul>
+<li>Pipeline <em>servers</em>:</li>
+<li>Triplestore</li>
+<li>Solr + preconfigured Solr core</li>
+<li>Search API (<code>ontology-search</code>)</li>
+<li>Neo4J production instance (<code>obask-kb</code>)</li>
+<li>Pipeline <em>data pipelines</em>:</li>
+<li>Data collection (<code>pipeline-collectdata</code>)</li>
+<li>Triplestore ingestion (<code>pipeline-updatetriplestore</code>)</li>
+<li>Data transformation and dumps for production instances (<code>pipeline-dumps</code>)</li>
+<li>KG production instance ingestion (<code>pipeline-updateprod</code>)</li>
+</ul>
+<p>Server and data pipelines are combined into 3 general sub-pipelines which are configured as Docker compose services. This documentation describes all 3 sub-pipelines in detail, including which role the individual servers and data pipelines play.</p>
+<p><img alt="Pipeline Overview" src="../pipeline-overview.png" /></p>
+<h2 id="sub-pipeline-deploy-triplestore">Sub-pipeline: Deploy triplestore</h2>
+<ul>
+<li><em>Summary</em>: This pipeline deploys an empty triplestore, collects all relevant ontologies, and pre-processes and loads the collected data into the triplestore. Components:</li>
+<li>Triplestore</li>
+<li><code>pipeline-collectdata</code> (data collection and preprocessing pipeline for all resources)</li>
+<li><code>pipeline-updatetriplestore</code> (loading collected data into the triplestore)</li>
+<li><em>Dependents</em>: <code>pipeline-dumps</code></li>
+</ul>
+<h3 id="service-triplestore">Service: Triplestore</h3>
+<ul>
+<li><em>Image</em>: <a href="https://hub.docker.com/layers/eclipse/rdf4j-workbench/3.7.7/images/sha256-9159994bed66044562524e0e65d6add466af54e37cd1f554db8a2d8d22cfbcbf?context=explore">eclipse/rdf4j-workbench:3.7.7</a></li>
+<li><em>Summary</em>: The triplestore is currently an unspectacular default implementation of rdf4j-server. We make use of a simple in-memory store that is configured <a href="https://github.com/OBASKTools/obask/blob/main/config/updatetriplestore/rdf4j.txt">here</a>. The container is maintained elsewhere (see docker-hub pages of image for details).</li>
+</ul>
+<h3 id="data-pipeline-pipeline-collectdata">Data pipeline: pipeline-collectdata</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/pipeline-collectdata/pkgs/container/">ghcr.io/obasktools/pipeline-collectdata</a>pipeline-collectdata</li>
+<li><em>Git</em>: https://github.com/OBASKTools/pipeline-collectdata</li>
+<li><a href="https://github.com/OBASKTools/pipeline-collectdata/blob/master/Dockerfile">Dockerfile</a></li>
+<li><em>Summary</em>: This container encapsulates a process that downloads a number of source ontologies, and applies a number of ROBOT-based pre-processing steps, in particular: extracting modules/slices of external ontologies, running consistency checks and serialising as ttl for quicker ingest into triplestore. It also contains the <em>data embargo</em> pipeline and has some provisions for <em>shacl validation</em>.</li>
+</ul>
+<h4 id="detailed-notes-on-pipeline-collectdata">Detailed notes on pipeline-collectdata</h4>
+<ul>
+<li>The process is encoded <a href="https://github.com/OBASKTools/pipeline-collectdata/blob/master/process.sh">here</a>. It performs the following steps:</li>
+<li>Downloading external ontologies.</li>
+<li>Removing embargoed data. The technique applied here is based on using ROBOT query and encoding the embargo logic as SPARQL queries (combined with <code>ROBOT remove</code>).</li>
+<li>Ontologies in <a href="https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_fullontologies.txt">project configuration</a> are imported in their entirety.</li>
+<li>Ontologies in <a href="https://github.com/OBASKTools/obask/blob/main/config/collectdata/vfb_slices.txt">slice configuration</a> are sliced. The slice corresponds to a BOTTOM module that has the combined signature of all ontologies in the fullontologies section with the signature of the KB.</li>
+<li>All ontologies are converted to turtle format.</li>
+<li>All ontologies ready to be imported into the triplestore are gzipped.</li>
+</ul>
+<h3 id="data-pipeline-pipeline-updatetriplestore">Data pipeline: pipeline-updatetriplestore</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/pipeline-updatetriplestore/pkgs/container/pipeline-updatetriplestore">ghcr.io/obasktools/pipeline-updatetriplestore</a></li>
+<li><a href="https://github.com/OBASKTools/pipeline-updatetriplestore/blob/master/Dockerfile">Dockerfile</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/pipeline-updatetriplestore</li>
+<li><em>Summary</em>: This container encapsulates a process that (1) sets up the triplestores and (2) loads all of the ttl files generated by pipeline-collectdata into the triplestore. The image contains the configuration details of triplestore, like choice of triplestore engine.</li>
+</ul>
+<h4 id="detailed-notes-on-pipeline-updatetriplestore">Detailed notes on pipeline-updatetriplestore:</h4>
+<ul>
+<li>The <a href="https://github.com/OBASKTools/pipeline-updatetriplestore/blob/master/process.sh">process</a> loads the ontologies and data collected in the previous step into the triple store.</li>
+</ul>
+<h2 id="sub-pipeline-data-transformation-and-dumps-for-production-instances-pipeline-dumps">Sub-pipeline: Data transformation and dumps for production instances (pipeline-dumps)</h2>
+<ul>
+<li><em>Summary</em>: This pipeline transforms the knowledge graph in the triplestore into various custom data dumps used by downstream services such as the production knowledge graph (neo4j) instance and solr.</li>
+<li><em>Depends on</em>: Triplestore</li>
+<li><em>Dependents</em>: obask-kb, solr, pipeline-updatesolr</li>
+</ul>
+<h3 id="data-pipeline-pipeline-dumps">Data pipeline: pipeline-dumps</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/pipeline-dumps/pkgs/container/pipeline-dumps">ghcr.io/obasktools/pipeline-dumps</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/pipeline-dumps</li>
+<li><em>Summary</em>: The dumps pipeline access the triple store to obtain data dumps that in mungs, transforms and enriches for various downstream purposes such as pipeline-prod ingestion and solr ingestion.</li>
+<li><a href="https://github.com/OBASKTools/pipeline-dumps/blob/master/Dockerfile">Dockerfile</a></li>
+</ul>
+<h4 id="detailed-notes-on-pipeline-dumps">Detailed notes on pipeline-dumps</h4>
+<ul>
+<li>The <a href="https://github.com/OBASKTools/pipeline-dumps/blob/master/process.sh">process</a> performs the following steps (all encoded in the <a href="https://github.com/OBASKTools/pipeline-dumps/blob/master/dumps.Makefile">Makefile</a>):</li>
+<li>Build dump for <code>obask-kb</code> (Neo4j tabular data structure)</li>
+<li>Build dump for <code>solr</code> (special json file, created using python)</li>
+</ul>
+<h2 id="sub-pipeline-knowledge-graph-obask-kb">Sub-pipeline: Knowledge Graph (obask-kb)</h2>
+<ul>
+<li><em>Summary</em>: This pipeline deploys the production instance of the Knowledge Graph (neo4j database) and loads all the relevant data.</li>
+<li><em>Depends on</em>: pipeline-dumps</li>
+<li><em>Dependents</em>: None</li>
+</ul>
+<h3 id="service-obask-kb">Service: obask-kb</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/obask-kb/pkgs/container/obask-kb">ghcr.io/obasktools/obask-kb</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/obask-kb</li>
+<li><a href="https://github.com/OBASKTools/obask-kb/blob/main/Dockerfile">Dockerfile</a></li>
+<li><em>Summary</em>: Deploys an empty, configured instance of a Neo4J database with the <a href="https://github.com/VirtualFlyBrain/neo4j2owl">neo2owl plugin</a>, APOC and GDS tools.</li>
+</ul>
+<h3 id="data-pipeline-pipeline-updateprod">Data pipeline: pipeline-updateprod</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/pipeline-updateprod/pkgs/container/pipeline-updateprod">ghcr.io/obasktools/pipeline-updateprod</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/pipeline-updateprod</li>
+<li><a href="https://github.com/OBASKTools/pipeline-updateprod/blob/master/Dockerfile">Dockerfile</a></li>
+<li><em>Summary</em>: The update-prod container currently takes an ontology (from the integration layer) and loads it into the the Neo4J instance (pipeline-prod) using the neo2owl plugin. Process:</li>
+<li>Loading the ontology using the <code>neo4j2owl:owl2Import()</code> procedure</li>
+<li>Setting a number of indices (see detailed notes below).</li>
+</ul>
+<h4 id="detailed-notes-about-pipeline-updateprod">Detailed notes about pipeline-updateprod</h4>
+<ul>
+<li>You can set additional Pipeline post-processing steps like indices by editing <a href="https://github.com/OBASKTools/obask/blob/main/config/update-prod/pdb_set_indices.neo4j">this file</a>. Note that this file can be used to set arbitrary post-processing cypher queries, not just indices (contrary to the file name). Essentially, all list cypher queries are executed in order right after PDB import is completed.</li>
+<li>The possible configuration settings for the <code>neo4j2owl:owl2Import()</code> procedure are described <a href="https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl">here</a>. The configuration is stored <a href="https://github.com/OBASKTools/obask/blob/main/config/prod/neo4j2owl-config.yaml">here</a>.</li>
+</ul>
+<h2 id="sub-pipeline-ontology-search-ontology-search">Sub-pipeline: Ontology Search (ontology-search)</h2>
+<ul>
+<li><em>Summary</em>: This pipeline deploys the production instance of the Knowledge Graph (neo4j database) and loads all the relevant data.</li>
+<li><em>Depends on</em>: pipeline-dumps</li>
+<li><em>Dependents</em>: None</li>
+</ul>
+<h3 id="service-solr">Service: Solr</h3>
+<ul>
+<li><em>Image</em>: <a href="https://hub.docker.com/layers/library/solr/8.11/images/sha256-50130507d75ae35de3511e04fb80e5939d868499e6c8608fe8f7664e956dc69b?context=explore">solr:8.11</a></li>
+<li><em>Summary</em>: Deploys an empty, configured instance of Solr.</li>
+</ul>
+<h3 id="data-pipeline-pipeline-updatesolr">Data pipeline: pipeline-updatesolr</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/pipeline-updatesolr/pkgs/container/pipeline-updatesolr">ghcr.io/obasktools/pipeline-updatesolr</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/pipeline-updatesolr</li>
+<li><a href="https://github.com/OBASKTools/pipeline-updatesolr/blob/main/Dockerfile">Dockerfile</a></li>
+<li><em>Summary</em>: The pipeline-updatesolr container initializes the Solr schema and indexes the json data generated by the pipeline-dumps to the Solr.</li>
+</ul>
+<h3 id="service-ontology-search">Service: ontology-search</h3>
+<ul>
+<li><em>Image</em>: <a href="https://github.com/OBASKTools/ontology-search/pkgs/container/ontology-search">ghcr.io/obasktools/ontology-search</a></li>
+<li><em>Git</em>: https://github.com/OBASKTools/ontology-search</li>
+<li><a href="https://github.com/OBASKTools/ontology-search/blob/main/api/Dockerfile">Dockerfile</a></li>
+<li><em>Summary</em>: Provides ontology search APIs.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>
