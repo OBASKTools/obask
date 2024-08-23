@@ -2,59 +2,69 @@
 
 ## Prerequisites:
 
-1. Update to docker compose V2 (>= Docker Compose version v2.17) (see [https://docs.docker.com/compose/install/linux/](https://docs.docker.com/compose/install/linux/))
+1. Update to Docker Compose V2 (>= Docker Compose version v2.17) (see [https://docs.docker.com/compose/install/linux/](https://docs.docker.com/compose/install/linux/))
 
 ## Create your project:
 
 1. [Install cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html#install-cookiecutter)
 
-`python3 -m pip install --user cookiecutter`
+    ```bash
+    python3 -m pip install --user cookiecutter
+    ```
 
-or
+    or
 
-`conda install cookiecutter`
+    ```bash
+    conda install cookiecutter
+    ```
 
-2. Navigate to a folder where you want to create your new pipeline project and run the OBASK project template
+2. Navigate to a folder where you want to create your new pipeline project and run the OBASK project template:
 
-`cookiecutter gh:OBASKTools/obask-template`
+    ```bash
+    cookiecutter gh:OBASKTools/obask-template
+    ```
 
-or
+    or
 
-`python3 -m cookiecutter gh:OBASKTools/obask-template`
+    ```bash
+    python3 -m cookiecutter gh:OBASKTools/obask-template
+    ```
 
-Then provide your `project_name` when asked.
+    Then provide your `project_name` when asked.
 
-3. Commit your project to GitHub. Be bold, if you are not satisfied with the result, you can delete the repository and create it again as many times as you want.
+3. Commit your project to GitHub. Be bold; if you are not satisfied with the result, you can delete the repository and create it again as many times as you want.
 
     - Navigate to your newly created project folder and initialize the git repository.
-    ```
+
+    ```bash
     git init -b main 
     git add . 
     git commit -m "First commit" 
     ```
 
-    - [Create a new repository](https://github.com/new). Repo name should be same with the `project_name` you provided to the template.
+    - [Create a new repository](https://github.com/new). The repo name should be the same as the `project_name` you provided to the template.
 
-    - Do not initialize with a README (you already have one)
+    - Do not initialize with a README (you already have one).
 
-    - Click Create
+    - Click Create.
 
-    - See the section under "…or push an existing repository from the command line". Follow the instructions there. E.g. (make sure the location of your remote is exactly correct!).
-    ```
+    - See the section under "…or push an existing repository from the command line." Follow the instructions there. For example, (make sure the location of your remote is exactly correct!).
+
+    ```bash
     git remote add origin https://github.com/MyRepo/my_project_name.git 
     git branch -M main 
     git push -u origin main 
     ```
 
-4. Customise your configs:
+4. Customize your configs:
 
-    Mandatory:
-    - config/collectdata/vfb_fullontologies.txt
-    - config/prod/neo4j2owl_config.yaml (see https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl)
+    **Mandatory:**
+    - `config/collectdata/vfb_fullontologies.txt`
+    - `config/prod/neo4j2owl_config.yaml` (see [neo4j2owl configuration](https://github.com/VirtualFlyBrain/neo4j2owl#configuration-of-neo4j2owl))
     
-    Advanced:
-    - collect /sparqls
-    - dumps /sparqls for labels
+    **Advanced:**
+    - `collect/sparqls`
+    - `dumps/sparqls` for labels
 
 ## Run your project:
 
