@@ -17,6 +17,7 @@
 - **Ontology-Driven**: Create applications by defining your input ontologies and classifications.
 - **Search and Exploration**: Automatically build powerful search endpoints for data analysis.
 - **Configurable**: Use simple configuration files to customize your application setup.
+- **Customizable Widgets**: Embed ontology search functionalities into your web applications effortlessly.
 
 ### Get Started Today
 Ready to explore the power of OBASK?

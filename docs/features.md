@@ -60,7 +60,18 @@ curie_map:
 
 ---
 
-### **4. Fast and Scalable**
+### **4. Ontology Search Widget**
+The Ontology Search Widget offers a seamless way to integrate ontology search functionality into your web applications. It works perfectly with OBASK-generated search endpoints and provides a user-friendly interface for exploring ontologies.
+
+#### Features:
+- **Auto-Completion**: Suggests ontology terms dynamically as the user types.
+- **Customizable Options**: Easily configurable to match your application’s needs.
+- **Compatibility**: Works with OBASK-generated Solr indexes and other web technologies.
+
+Explore the widget repository for installation and usage instructions:  
+[Ontology Search Widget GitHub Repository](https://github.com/OBASKTools/ontology-search-widget)
+
+### **5. Fast and Scalable**
 - OBASK is optimized to handle large ontologies efficiently, ensuring fast setup and execution.
 - Scalable for both small-scale projects and extensive datasets.
 

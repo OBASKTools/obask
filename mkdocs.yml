@@ -13,5 +13,6 @@ nav:
   - Features: features.md
   - Project quick start: quick_start.md
   - Advanced settings: advanced_config.md
+  - Examples: examples.md
 
 repo_url: https://github.com/OBASKTools/obask

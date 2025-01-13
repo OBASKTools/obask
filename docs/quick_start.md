@@ -89,6 +89,15 @@ Then you can continue customizing your configurations and run the pipeline again
 
 `docker-compose up`
 
+## _Optional:_ Integrate the Ontology Search Widget
+Once you’ve set up the OBASK-generated Solr search endpoint, enhance your application by embedding the Ontology Search Widget. This widget simplifies search integration and improves user experience with auto-completion and customizable options.
+
+#### How to Use:
+1. Clone the widget repository:  
+   `git clone https://github.com/OBASKTools/ontology-search-widget.git`
+2. Follow the installation and configuration instructions in the [repository documentation](https://github.com/OBASKTools/ontology-search-widget).
+3. Connect the widget to your OBASK search endpoint and customize it as needed.
+
 ## Troubleshooting
 
 1- Dumps: Semantic tag labels should not contain a space character in the `config/prod/neo4j2owl_config.yaml`
