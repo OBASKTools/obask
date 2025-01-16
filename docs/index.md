@@ -3,8 +3,9 @@
 
     OBASK (Ontology-Based Application Starter Kit) enables users to create search
     and knowledge exploration applications effortlessly, without any programming 
-    skills. With OBASK, you can transform your ontology-annotated data into powerful applications that allow you to search and query your data and 
-    provide knowedge graph inputs to Machine Learning.
+    skills. With OBASK, you can transform your ontology-annotated data into powerful
+    applications that allow you to search and query your data and provide knowedge graph 
+    inputs for Machine Learning.
 
 ### Why Choose OBASK?
 - **No Coding Required**: Simplify complex processes and focus on your data.
