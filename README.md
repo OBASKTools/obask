@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/588526260.svg)](https://zenodo.org/doi/10.5281/zenodo.10518989)
 
-# Ontology Based Application Starter Kit (OBASK)
+# OBASK: Ontology Based Application Starter Kit
 
 Ontology Based Application Starter Kit (OBASK) is an innovative tool that empowers users to easily create search and knowledge exploration applications using their ontologies, without the need for any programming skills. With OBASK, users can quickly kickstart an ontology-driven application by simply defining their input ontologies and providing gross classifications via configuration files.
 
@@ -8,33 +8,37 @@ _OBASK tools originated with work carried out to support the [Virtual Fly Brain]
 
 Once the configuration is set up, OBASK takes care of the heavy lifting, automatically generating knowledge search endpoints, Solr indexes, and materialized knowledge graphs with a single command. This means that users can focus on exploring and analyzing their data without getting bogged down in technical details.
 
-With OBASK, users can harness the full potential of their ontologies to create powerful and insightful applications that enable them to better understand and analyze their data.
+<p align="center">
+  <img width="400" src="docs/images/high_level_architecture.png">
+</p>
 
-OBASK pipeline comprises three servers/services and five data pipelines:
+---
 
-- Pipeline _servers_:
-  - Triplestore
-  - SOLr + preconfigured SOLr core
-  - Search API ([ontology-search](https://github.com/OBASKTools/ontology-search))
-  - Neo4J production instance ([obask-kb](https://github.com/OBASKTools/obask-kb))
-- Pipeline _data pipelines_:
-  - Data collection ([pipeline-collectdata](https://github.com/OBASKTools/pipeline-collectdata))
-  - Triple store ingestion ([pipeline-updatetriplestore](https://github.com/OBASKTools/pipeline-updatetriplestore))
-  - Data transformation and dumps for production instances ([pipeline-dumps](https://github.com/OBASKTools/pipeline-dumps))
-  - KG production instance ingestion ([pipeline-updateprod](https://github.com/OBASKTools/pipeline-updateprod))
-  - Solr index update ([obask-updatesolr](https://github.com/OBASKTools/pipeline-updatesolr))
+## **Explore OBASK**
+Visit the relevant sections below to learn more:
 
-Server and data pipelines are combined into 4 general sub-pipelines which are configured as Docker compose services. This documentation describes all 4 sub-pipelines in detail, including which role the individual servers and data pipelines play.
+- **[Getting Started](https://obasktools.github.io/obask/quick_start/)**: Step-by-step guide to install and use OBASK.
+- **[Features](https://obasktools.github.io/obask/features/)**: Comprehensive overview of OBASK's capabilities.
+- **[Examples](https://obasktools.github.io/obask/examples/)**: Explore real-world applications powered by OBASK.
+- **[Ontology Search Widget](https://github.com/OBASKTools/ontology-search-widget?tab=readme-ov-file#getting-started)**: Learn how to integrate our lightweight, customizable search widget.
+- **[Pipeline Overview](https://obasktools.github.io/obask/architecture/)**: Understand how OBASK works behind the scenes.
 
-![Pipeline Overview](docs/pipeline-overview.png)
+---
 
-## Start using OBASK
+## **Contributing**
+We welcome contributions to OBASK! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request with a detailed description of your changes.
 
-Please follow the [quick start guide](https://obasktools.github.io/obask/quick_start/).
+---
 
-## OBASK Architecture
+## **Support**
+For help or feedback, visit:
+- **[Documentation](https://obasktools.github.io/obask/)**: Comprehensive guides and resources.
+- **[Issues Section](https://github.com/OBASKTools/obask/issues)**: Report bugs or request features.
 
-See the [architecture documentation](https://obasktools.github.io/obask/architecture/).
+---
 
-
-
+## **License**
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

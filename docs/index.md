@@ -1,12 +1,30 @@
-# Ontology Based Application Starter Kit (OBASK) Guide
+![Pipeline Overview](images/logo1_text.png)
+# Ontology Based Application Starter Kit (OBASK)
 
-Ontology Based Application Starter Kit (OBASK) is an innovative tool that empowers users to easily create search and knowledge exploration applications using their ontologies, without the need for any programming skills. With OBASK, users can quickly kickstart an ontology-driven application by simply defining their input ontologies and providing gross classifications via configuration files.
+    OBASK (Ontology-Based Application Starter Kit) enables users to create search
+    and knowledge exploration applications effortlessly, without any programming 
+    skills. With OBASK, you can transform your ontology-annotated data into powerful
+    applications that allow you to search and query your data and provide knowedge graph 
+    inputs for Machine Learning.
 
-Once the configuration is set up, OBASK takes care of the heavy lifting, automatically generating knowledge search endpoints, Solr indexes, and materialized knowledge graphs with a single command. This means that users can focus on exploring and analyzing their data without getting bogged down in technical details.
+### Why Choose OBASK?
+- **No Coding Required**: Simplify complex processes and focus on your data.
+- **Automatic Outputs**: Generate knowledge graphs, Solr indexes, and search endpoints with a single command.
+- **Fast and Efficient**: Get started in minutes and deliver impactful results quickly.
 
-With OBASK, users can harness the full potential of their ontologies to create powerful and insightful applications that enable them to better understand and analyze their data.
+### Key Features
+- **Ontology-Driven**: Create applications by defining your input ontologies and annotated, structured data.
+- **Search and Exploration**: Automatically build powerful search endpoints for data analysis.
+- **Configurable**: Use simple configuration files to customize your application setup.
+- **Customizable Widgets**: Embed ontology search functionalities into your web applications effortlessly.
 
-- [OBASK Features]()
-- [Quick Start My Project](quick_start.md)
-- [Advanced Configurations]()
-- [Architecture](architecture.md)
+### Get Started Today
+Ready to explore the power of OBASK?
+- [Get Started](quick_start.md) to install and run OBASK in just a few steps.
+- [Learn More](features.md) about how OBASK works and its innovative features.
+
+<p align="center">
+  <img width="500" src="images/high_level_architecture.png">
+</p>
+*Figure: Input ontologies are processed by OBASK, generating knowledge graphs, Solr indexes, and search endpoints.*
+
